@@ -13,6 +13,52 @@
   <!-- Particle canvas -->
   <canvas id="web-canvas"></canvas>
 
+  <!-- SVG Spider Webs fixed to corners -->
+  <svg class="spiderweb spiderweb-tl" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#e62429" stroke-width="0.8" fill="none" opacity="0.35">
+      <!-- radial lines -->
+      <line x1="0" y1="0" x2="300" y2="150"/><line x1="0" y1="0" x2="250" y2="300"/>
+      <line x1="0" y1="0" x2="150" y2="300"/><line x1="0" y1="0" x2="0" y2="300"/>
+      <line x1="0" y1="0" x2="300" y2="0"/><line x1="0" y1="0" x2="300" y2="60"/>
+      <line x1="0" y1="0" x2="300" y2="300"/>
+      <!-- arcs -->
+      <path d="M 40,0 Q 20,20 0,40"/><path d="M 90,0 Q 50,50 0,90"/>
+      <path d="M 150,0 Q 80,80 0,150"/><path d="M 210,0 Q 110,110 0,210"/>
+      <path d="M 270,0 Q 140,140 0,270"/><path d="M 300,30 Q 170,170 30,300"/>
+      <path d="M 300,90 Q 200,200 90,300"/><path d="M 300,150 Q 230,230 150,300"/>
+    </g>
+  </svg>
+
+  <svg class="spiderweb spiderweb-tr" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#e62429" stroke-width="0.8" fill="none" opacity="0.35">
+      <line x1="300" y1="0" x2="0" y2="150"/><line x1="300" y1="0" x2="50" y2="300"/>
+      <line x1="300" y1="0" x2="150" y2="300"/><line x1="300" y1="0" x2="300" y2="300"/>
+      <line x1="300" y1="0" x2="0" y2="0"/><line x1="300" y1="0" x2="0" y2="60"/>
+      <line x1="300" y1="0" x2="0" y2="300"/>
+      <path d="M 260,0 Q 280,20 300,40"/><path d="M 210,0 Q 250,50 300,90"/>
+      <path d="M 150,0 Q 220,80 300,150"/><path d="M 90,0 Q 190,110 300,210"/>
+      <path d="M 30,0 Q 160,140 300,270"/><path d="M 0,30 Q 130,170 270,300"/>
+      <path d="M 0,90 Q 100,200 210,300"/><path d="M 0,150 Q 70,230 150,300"/>
+    </g>
+  </svg>
+
+  <svg class="spiderweb spiderweb-br" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#e62429" stroke-width="0.8" fill="none" opacity="0.2">
+      <line x1="300" y1="300" x2="0" y2="150"/><line x1="300" y1="300" x2="50" y2="0"/>
+      <line x1="300" y1="300" x2="150" y2="0"/><line x1="300" y1="300" x2="0" y2="300"/>
+      <line x1="300" y1="300" x2="300" y2="0"/><line x1="300" y1="300" x2="0" y2="240"/>
+      <path d="M 260,300 Q 280,280 300,260"/><path d="M 210,300 Q 250,250 300,210"/>
+      <path d="M 150,300 Q 220,220 300,150"/><path d="M 90,300 Q 190,190 300,90"/>
+      <path d="M 30,300 Q 160,160 300,30"/><path d="M 0,270 Q 130,130 270,0"/>
+    </g>
+  </svg>
+
+  <!-- Swinging spider -->
+  <div class="spider-swing" id="spider-swing">
+    <div class="spider-thread"></div>
+    <div class="spider-body">🕷️</div>
+  </div>
+
   <!-- Loader -->
   <div class="loader" id="loader">
     <div class="loader-spider">
@@ -54,6 +100,17 @@
     <div class="hero-bg-text">SPIDER</div>
     <div class="web-corner top-left"></div>
     <div class="web-corner top-right"></div>
+    <!-- Hero center web decoration -->
+    <svg class="hero-web-center" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#e62429" stroke-width="0.6" fill="none" opacity="0.12">
+        <line x1="100" y1="100" x2="100" y2="0"/><line x1="100" y1="100" x2="170" y2="30"/>
+        <line x1="100" y1="100" x2="200" y2="100"/><line x1="100" y1="100" x2="170" y2="170"/>
+        <line x1="100" y1="100" x2="100" y2="200"/><line x1="100" y1="100" x2="30" y2="170"/>
+        <line x1="100" y1="100" x2="0" y2="100"/><line x1="100" y1="100" x2="30" y2="30"/>
+        <circle cx="100" cy="100" r="25"/><circle cx="100" cy="100" r="50"/>
+        <circle cx="100" cy="100" r="75"/><circle cx="100" cy="100" r="100"/>
+      </g>
+    </svg>
 
     <div class="hero-content" data-aos="fade-right">
       <div class="hero-badge">
@@ -132,6 +189,12 @@
 
   <!-- ===== ABOUT ===== -->
   <section class="about section" id="about">
+    <div class="web-divider">
+      <svg viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,30 Q300,0 600,30 Q900,60 1200,30" stroke="#e62429" stroke-width="1" fill="none" opacity="0.3"/>
+        <path d="M0,30 Q300,60 600,30 Q900,0 1200,30" stroke="#e62429" stroke-width="0.5" fill="none" opacity="0.15"/>
+      </svg>
+    </div>
     <div class="section-label">01 / About</div>
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">About <span>Me</span></h2>
