@@ -60,11 +60,11 @@ navLinks.querySelectorAll('a').forEach(link => {
 
 // ===== TYPED TEXT EFFECT =====
 const roles = [
-  'Full Stack Developer',
-  'Frontend Developer',
-  'Backend Developer',
-  'Problem Solver',
-  'Open Source Enthusiast'
+  'Gen AI Developer',
+  'AI & ML Engineer',
+  'Backend Developer (FastAPI)',
+  'LLM Integration Specialist',
+  'IEEE Published Researcher'
 ];
 
 let roleIndex = 0;
