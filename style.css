@@ -368,10 +368,20 @@ strong { color: var(--white); font-weight: 600; }
   background: var(--border);
 }
 
-/* Hero Visual */
+/* ── HERO VISUAL — Profile Photo + Orbiting Rings ──
+   Layout (all centered):
+   hero-visual:  460px × 460px  container
+   hv-ring-3:    420px  outermost decorative ring
+   hv-ring-2:    360px  middle ring
+   hv-ring-1:    300px  inner ring
+   hv-core:      220px  profile photo circle  ← sits inside ring-1
+   hv-orbit-1:   300px  matches ring-1
+   hv-orbit-2:   360px  matches ring-2
+   hv-orbit-3:   420px  matches ring-3
+*/
 .hero-visual {
   position: relative;
-  width: 380px; height: 380px;
+  width: 460px; height: 460px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   z-index: 2;
@@ -382,55 +392,85 @@ strong { color: var(--white); font-weight: 600; }
   border: 1px solid;
 }
 .hv-ring-1 {
-  width: 320px; height: 320px;
-  border-color: rgba(230,36,41,0.15);
+  width: 300px; height: 300px;
+  border-color: rgba(230,36,41,0.2);
   animation: ring-spin 20s linear infinite;
 }
 .hv-ring-2 {
-  width: 260px; height: 260px;
-  border-color: rgba(240,180,41,0.1);
+  width: 360px; height: 360px;
+  border-color: rgba(240,180,41,0.12);
   animation: ring-spin 14s linear infinite reverse;
 }
 .hv-ring-3 {
-  width: 200px; height: 200px;
-  border-color: rgba(230,36,41,0.08);
+  width: 420px; height: 420px;
+  border-color: rgba(230,36,41,0.07);
   animation: ring-spin 8s linear infinite;
 }
 @keyframes ring-spin { to { transform: rotate(360deg); } }
+
+/* Profile photo circle — 220px, sits inside ring-1 (300px) with 40px gap each side */
 .hv-core {
-  width: 130px; height: 130px;
+  width: 220px; height: 220px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--red-dark), #8b0000);
+  background: var(--card2);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 60px rgba(230,36,41,0.4), 0 0 120px rgba(230,36,41,0.15);
+  box-shadow:
+    0 0 0 4px rgba(230,36,41,0.35),
+    0 0 40px rgba(230,36,41,0.25),
+    0 0 80px rgba(230,36,41,0.1);
   z-index: 2;
+  overflow: hidden;
+  padding: 0;
 }
-.hv-avatar {
+
+/* Photo wrapper */
+.hv-photo-wrap {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.hv-photo {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  display: block;
+}
+.hv-photo-fallback {
+  display: none;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  align-items: center; justify-content: center;
   font-family: var(--display);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   color: #fff;
   letter-spacing: 4px;
+  background: linear-gradient(135deg, var(--red-dark), #8b0000);
 }
+
+/* Orbits — diameters match the rings exactly */
 .hv-orbit {
   position: absolute;
   border-radius: 50%;
   display: flex; align-items: flex-start; justify-content: center;
 }
-.hv-orbit-1 { width: 200px; height: 200px; animation: ring-spin 7s linear infinite; }
-.hv-orbit-2 { width: 260px; height: 260px; animation: ring-spin 11s linear infinite reverse; }
-.hv-orbit-3 { width: 320px; height: 320px; animation: ring-spin 16s linear infinite; }
+.hv-orbit-1 { width: 300px; height: 300px; animation: ring-spin 7s  linear infinite; }
+.hv-orbit-2 { width: 360px; height: 360px; animation: ring-spin 11s linear infinite reverse; }
+.hv-orbit-3 { width: 420px; height: 420px; animation: ring-spin 16s linear infinite; }
+
 .hv-orb {
-  width: 36px; height: 36px;
+  width: 38px; height: 38px;
   border-radius: 50%;
   background: var(--card2);
   border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--red);
-  margin-top: -18px;
+  margin-top: -19px;
   box-shadow: 0 0 12px rgba(230,36,41,0.2);
 }
-.hv-orbit-1 .hv-orb { animation: ring-spin 7s linear infinite reverse; }
+.hv-orbit-1 .hv-orb { animation: ring-spin 7s  linear infinite reverse; }
 .hv-orbit-2 .hv-orb { animation: ring-spin 11s linear infinite; }
 .hv-orbit-3 .hv-orb { animation: ring-spin 16s linear infinite reverse; }
 
@@ -3847,4 +3887,92 @@ strong { color: var(--white); font-weight: 600; }
   line-height: 1.75;
   margin-bottom: 36px;
   max-width: 520px;
+}
+
+/* ── HERO PROFILE PHOTO ── */
+
+/* Make the profile photo much larger while keeping the orbit/ring animation aligned */
+.hv-core {
+  width: 320px !important;
+  height: 320px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, var(--card2), var(--bg3)) !important;
+  box-shadow: 0 0 0 4px rgba(230,36,41,0.4),
+              0 0 40px rgba(230,36,41,0.25),
+              0 0 80px rgba(230,36,41,0.1) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+/* Photo wrapper fills the core */
+.hv-photo-wrap {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Actual photo */
+.hv-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 50%;
+  display: block;
+}
+
+/* Fallback when no photo — shows SP initials */
+.hv-photo-fallback {
+  display: none;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-size: 3.5rem;
+  color: var(--red);
+  letter-spacing: 4px;
+  background: linear-gradient(135deg, var(--red-dark), #8b0000);
+}
+
+/* Scale up the orbit rings to match bigger core */
+.hv-ring-1 { width: 380px !important; height: 380px !important; }
+.hv-ring-2 { width: 440px !important; height: 440px !important; }
+.hv-ring-3 { width: 500px !important; height: 500px !important; }
+.hv-orbit-1 { width: 380px !important; height: 380px !important; }
+.hv-orbit-2 { width: 440px !important; height: 440px !important; }
+.hv-orbit-3 { width: 500px !important; height: 500px !important; }
+.hv-orb { margin-top: -22px !important; }
+
+/* Hero visual container — bigger to fit expanded rings */
+.hero-visual {
+  width: 560px !important;
+  height: 560px !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hv-core   { width: 250px !important; height: 250px !important; }
+  .hv-ring-1 { width: 330px !important; height: 330px !important; }
+  .hv-ring-2 { width: 380px !important; height: 380px !important; }
+  .hv-ring-3 { width: 430px !important; height: 430px !important; }
+  .hv-orbit-1 { width: 330px !important; height: 330px !important; }
+  .hv-orbit-2 { width: 380px !important; height: 380px !important; }
+  .hv-orbit-3 { width: 430px !important; height: 430px !important; }
+  .hero-visual { width: 520px !important; height: 520px !important; }
+}
+
+@media (max-width: 768px) {
+  .hv-core   { width: 200px !important; height: 200px !important; }
+  .hv-ring-1 { width: 260px !important; height: 260px !important; }
+  .hv-ring-2 { width: 310px !important; height: 310px !important; }
+  .hv-ring-3 { display: none !important; }
+  .hv-orbit-1 { width: 260px !important; height: 260px !important; }
+  .hv-orbit-2 { width: 310px !important; height: 310px !important; }
+  .hv-orbit-3 { display: none !important; }
+  .hero-visual { width: 380px !important; height: 380px !important; }
+  .hv-photo-fallback { font-size: 2.5rem !important; }
 }
