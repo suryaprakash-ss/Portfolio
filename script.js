@@ -216,15 +216,45 @@ if (form) {
   form.addEventListener('submit', e => {
     e.preventDefault();
     const btn = form.querySelector('.cf-submit');
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const subject = form.querySelector('input[name="subject"]').value.trim() || 'Inquiry from portfolio site';
+    const message = form.querySelector('textarea[name="message"]').value.trim();
+
+    if (!name || !email || !message) {
+      if (status) {
+        status.style.color = '#f97316';
+        status.textContent = 'Please complete the required fields before sending.';
+      }
+      return;
+    }
+
+    const recipient = 'suryaprakashstech@gmail.com';
+    const mailtoSubject = encodeURIComponent(subject);
+    const mailtoBody = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    );
+    const mailtoLink = `mailto:${recipient}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening email...';
+    if (status) {
+      status.style.color = '#2563eb';
+      status.textContent = 'Opening your email client...';
+    }
+
+    window.location.href = mailtoLink;
+
     setTimeout(() => {
-      if (status) { status.style.color = '#22c55e'; status.textContent = '✓ Message sent! I\'ll get back to you soon.'; }
+      if (status) {
+        status.style.color = '#22c55e';
+        status.textContent = 'Email draft opened. Send it from your email app to complete.';
+      }
       form.reset();
       btn.disabled = false;
       btn.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
-      setTimeout(() => { if (status) status.textContent = ''; }, 5000);
-    }, 1500);
+      setTimeout(() => { if (status) status.textContent = ''; }, 6000);
+    }, 800);
   });
 }
 
